@@ -7,7 +7,7 @@ namespace Subscriber
     {
         static void Main(string[] args)
         {
-            string connectionString = "host=myServer;username=user;password=topsecret";
+            string connectionString = "host=localhost;username=user;password=pass";
             using (var bus = RabbitHutch.CreateBus(connectionString))
             {
                 bus.Subscribe<Message.Subsidy>("test", HandleTextMessage);

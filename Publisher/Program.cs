@@ -7,32 +7,18 @@ namespace Publisher
     {
         static void Main(string[] args)
         {
-            string connectionString = "host=myServer;username=user;password=topsecret";
+            string connectionString = "host=localhost;username=user;password=pass";
             using (var bus = RabbitHutch.CreateBus(connectionString))
             {
                 var input = "";
-                Console.WriteLine("Enter a message. 'Quit' to quit.");
+                Console.WriteLine("Enter a recipient. 'Quit' to quit.");
                 while ((input = Console.ReadLine()) != "Quit")
                 {
                     bus.Publish(new Message.Subsidy
                     {
-                        ProjectCode = "ABCD!",
-                        Recipient = "SZDC",
+                        ProjectCode = "123456abcd",
+                        Recipient = input,
                         Value = 1000000
-                    });
-
-                    bus.Publish(new Message.Subsidy
-                    {
-                        ProjectCode = "Second project",
-                        Recipient = "RSD",
-                        Value = 200000
-                    });
-
-                    bus.Publish(new Message.Subsidy
-                    {
-                        ProjectCode = "Third message",
-                        Recipient = "Agropodnik",
-                        Value = 3
                     });
                 }
             }
